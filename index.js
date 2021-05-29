@@ -31,7 +31,7 @@ app.use('/order', orderRoute);
 
 /********************* DataBase **************************/
 const mongoose = require('mongoose'); 
-mongoose.connect( process.env.MONGO_URI, {
+mongoose.connect( process.env.NODE_ENV === "production" ? process.env.MONGO_URI : "mongodb://localhost/MedStore" , {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -41,26 +41,9 @@ mongoose.connect( process.env.MONGO_URI, {
     .catch( () => console.error('db not connected'))
 
 /********************* Deploy **************************/
-
 if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, '/client/build')));  
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
     })
-} else {
-    app.get('/', (req, res) => {
-        res.send('API running');
-    })
 }
-
-
-
-
-
-
-
-
-
-
-
-
