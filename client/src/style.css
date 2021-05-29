@@ -409,7 +409,7 @@ h2, h4 {
   margin: 20vh auto 10vh auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 110px 1fr;
+  grid-template-columns: 150px 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:   "Filters Products"   
                           "loadbutton loadbutton";
@@ -437,7 +437,22 @@ h2, h4 {
   background-color: #ffd7ba;
   border-radius: 5px;
 }
-
+@media (max-width: 767px) {
+  .shop {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:   "Filters"
+                            "Products"   
+                            "loadbutton";
+  }
+  .Filters {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 200px;
+    justify-content: space-around;
+  }
+}
 /**************************** Product ****************************/
 
 .product-card {
@@ -745,8 +760,9 @@ h2, h4 {
   width: 80%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  grid-template-areas:   "Links Infos Infos";
   column-gap: 40px;
+
 }
 .dashboard div {
   background-color: #fefefe;
@@ -762,11 +778,11 @@ h2, h4 {
   box-shadow: 2px 4px 8px -2px #989898;
 }
 .dashboard .links {
-  grid-area: 1/ span 1;
+  grid-area: Links;
   background-color: #fcedd8;
 }
 .dashboard .pers-infos {
-  grid-area: 1/ span 2;
+  grid-area: Infos;
   background-color: #f9f9f9;
 }
 .dashboard hr {
@@ -779,7 +795,11 @@ h2, h4 {
 }
 @media (max-width: 767px) {
   .dashboard {
+    width: 95%;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:   "Links Infos";
+    column-gap: 10px;
   }
 }
 
