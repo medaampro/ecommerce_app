@@ -495,7 +495,7 @@ h2, h4 {
   border-left: none;
   border-right: none;
   border-radius: 0px;
-  /* padding-left: 20px; */
+  padding-left: 20px;
 }
 .product-card .show-quantity button {
   font-size: 30px;
@@ -523,7 +523,7 @@ h2, h4 {
 .add-cart {
   margin-bottom: 10vh;
   display: grid;
-  grid-template-columns: repeat(1, 350px);
+  grid-template-columns: repeat(1, 400px);
   grid-template-rows: repeat(1, 40px);   
   justify-content: center; 
   text-align: center;
@@ -553,6 +553,12 @@ h2, h4 {
   .show-image {
     width: 100%;
     height: 350px;
+  }
+  .product-card .show-quantity input {
+    padding-left: 0;
+  }
+  .add-cart {
+    grid-template-columns: repeat(1, 350px);
   }
 }
 
@@ -589,8 +595,7 @@ h2, h4 {
   height: 30px;
   margin: 0px auto;
   display: grid;
-  grid-template-columns: 22px 30px 22px;
-  grid-template-rows: 30px;
+  grid-template-columns: 30px 50px 30px;
   justify-content: center;
 }
 .cart-infos .show-quantity input {
@@ -600,10 +605,10 @@ h2, h4 {
     border-right: none;
     border-radius: 0px;
     text-align: center;
-    /* padding-left: 10px; */
+    padding-left: 10px;
 }
 .cart-infos .show-quantity button {
-    font-size: 16px;
+    font-size: 26px;
     border: 1px solid #e5e5e5;
     outline: none;
     color: #686868;
@@ -649,7 +654,6 @@ h2, h4 {
     font-family: 'Cairo', sans-serif;
 }
 .client-infos form {
-    width: 400px;
     margin: 60px auto 0 auto;
 }
 .DropIn {
@@ -691,9 +695,21 @@ h2, h4 {
     .cart-infos table {
         width: 95%;
     }
-    .client-infos form {
-      width: 340px;
+    .cart-infos .show-quantity {
+      height: 25px;
+      grid-template-columns: 22px 30px 22px;
+      justify-content: center;
+    }
+    .cart-infos .show-quantity input {
+        padding-left: 0;
+    }
+    .cart-infos .show-quantity button {
+        font-size: 16px;
+    }
+    .icon-trash {
+      font-size: 24px;
   }
+
 }
 @media (max-width: 992px) {
     .cart {
