@@ -586,12 +586,12 @@ h2, h4 {
     padding-top: 10px;
 }
 .cart-infos .show-quantity {
-    height: 35px;
-    margin: 0px auto;
-    display: grid;
-    grid-template-columns: 30px 30px 30px;
-    grid-template-rows: 35px;
-    justify-content: center; 
+  height: 30px;
+  margin: 0px auto;
+  display: grid;
+  grid-template-columns: 22px 30px 22px;
+  grid-template-rows: 30px;
+  justify-content: center;
 }
 .cart-infos .show-quantity input {
     pointer-events: none;
@@ -603,8 +603,7 @@ h2, h4 {
     /* padding-left: 10px; */
 }
 .cart-infos .show-quantity button {
-    height: 35px;
-    font-size: 30px;
+    font-size: 16px;
     border: 1px solid #e5e5e5;
     outline: none;
     color: #686868;
@@ -694,7 +693,6 @@ h2, h4 {
     }
     .client-infos form {
       width: 340px;
-      margin: 60px auto 0 auto;
   }
 }
 @media (max-width: 992px) {
