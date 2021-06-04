@@ -52,7 +52,19 @@ const PostProduct = (props) => {
         <>
             <form onSubmit= { e => submitData(e) } >
                 <div>
-                    <input id="file-upload" onChange={ e => formData.set('photo', e.target.files[0])  } type="file" className='photo-upload' />
+                    <input id="file-upload" onChange={ e => formData.set('photo1', e.target.files[0])  } type="file" className='photo-upload' required/>
+                </div>
+                <div>
+                    <input id="file-upload" onChange={ e => formData.set('photo2', e.target.files[0])  } type="file" className='photo-upload' required/>
+                </div>
+                <div>
+                    <input id="file-upload" onChange={ e => formData.set('photo3', e.target.files[0])  } type="file" className='photo-upload' required/>
+                </div>
+                <div>
+                    <input id="file-upload" onChange={ e => formData.set('photo4', e.target.files[0])  } type="file" className='photo-upload' required/>
+                </div>
+                <div>
+                    <input id="file-upload" onChange={ e => formData.set('photo5', e.target.files[0])  } type="file" className='photo-upload' required/>
                 </div>
                 <div>
                     <input onChange={ e => formData.set('name', e.target.value) } type="text" placeholder="Name" required/>

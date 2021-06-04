@@ -4,13 +4,14 @@ import ShowImage from '../Helpers/ShowImage';
 import { getProduct } from '../API/Product/getProduct';
 import { useDispatch } from 'react-redux';
 import { AddToCart, Incremment, Decremment } from '../Actions/actions';
+import { x } from 'joi';
 
 const Product = (props) => {
 
     const dispatch = useDispatch();
 
     const [product, setProduct] = useState({});
-    const [url, setUrl] = useState("product/photo");
+    const [photoNum, setPhotoNum] = useState(1);
     const [counter, setCounter] = useState(1);
 
     
@@ -33,23 +34,23 @@ const Product = (props) => {
             <div className="product-card">
 
                 <div className="show-image">
-                    <ShowImage url= {url} productId= { props.match.params.productId } />
+                    <ShowImage url= {`product/${props.match.params.productId}/photo`} photoNum={photoNum} />
                 </div>
                 <div className="hideen-images">
                     <div>
-                        <input type="radio" name="price" onClick= { () => { setUrl("product/photo") } } defaultChecked/>
+                        <input type="radio" name="z" onClick= { () => { setPhotoNum(1) } } defaultChecked/>
                     </div>
                     <div>
-                        <input type="radio" name="price" onClick= { () => { setUrl("product/photo/1") } } />
+                        <input type="radio" name="z" onClick= { () => { setPhotoNum(2) } } />
                     </div>
                     <div>
-                        <input type="radio" name="price" onClick= { () => { setUrl("product/photo/2") } } />
+                        <input type="radio" name="z" onClick= { () => { setPhotoNum(3) } } />
                     </div>
                     <div>
-                        <input type="radio" name="price" onClick= { () => { setUrl("product/photo/3") } } />
+                        <input type="radio" name="z" onClick= { () => { setPhotoNum(4) } } />
                     </div>
                     <div>
-                        <input type="radio" name="price" onClick= { () => { setUrl("product/photo/4") } } />
+                        <input type="radio" name="z" onClick= { () => { setPhotoNum(5) } } />
                     </div>
                 </div>
                 <div className="show-title">

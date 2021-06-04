@@ -31,7 +31,7 @@ const Cart = () => {
 
                                 return(
                                 <tr key = { x._id } >
-                                    <td className="img-item" ><ShowImage url= {"product/photo"} productId= { x._id } /></td>
+                                    <td className="img-item" ><ShowImage url= {`product/${x._id}/photo`} photoNum={1} /></td>
                                     <td>{x.name}</td>
                                     <td>
                                         <div className="show-quantity">

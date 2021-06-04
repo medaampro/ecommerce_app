@@ -20,7 +20,7 @@ exports.getProducts = (req, res) => {
 
     Product.find(query)
            .populate("category") 
-           .select({photo: 0})
+           .select({photo1: 0, photo2: 0, photo3: 0, photo4: 0, photo5: 0})
            .sort([[sortBy, order]])
            .limit(limit)
            .exec( (err, products) => err ? res.status(400).json(err) : res.json(products) )
@@ -29,15 +29,21 @@ exports.getProducts = (req, res) => {
 
 /********************* getProduct **************************/
 exports.getProduct = (req, res) => {
-    req.body.product.photo = undefined;
+    req.body.product.photo1 = undefined;
+    req.body.product.photo2 = undefined;
+    req.body.product.photo3 = undefined;
+    req.body.product.photo4 = undefined;
+    req.body.product.photo5 = undefined;
     res.json(req.body.product);
 }
 
 /********************* getProduct Picture **************************/
 exports.photoProduct = (req , res) => {
-    const { data, contentType } = req.body.product.photo;
-    res.set('Content-Type', contentType);
-    return res.send(data);
+        let x = req.query.num ? parseInt(req.query.num) : 1 ;
+
+        var { data, contentType } = req.body.product[`photo${x}`];        
+        res.set('Content-Type', contentType);
+        return res.send(data);
 }
 
 /********************* filterProducts **************************/
@@ -66,7 +72,7 @@ exports.filterProducts = (req,res) => {
 
     Product.find(findArgs)
            .populate("category")
-           .select({photo: 0})
+           .select({photo1: 0, photo2: 0, photo3: 0, photo4: 0, photo5: 0})
            .sort([[sortBy , orderBy]])
            .limit(limit)
            .skip(skip)
@@ -79,7 +85,7 @@ exports.relatedProducts = (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit) : 4; 
 
     Product.find({ category: { $eq: req.body.product.category }, _id: { $ne: req.body.product._id } })
-           .select({photo: 0})
+           .select({photo1: 0, photo2: 0, photo3: 0, photo4: 0, photo5: 0})
            .limit(limit)
            .populate("category" , "_id name")
            .exec((err, Products) => err ? res.status(404).json('Products Not Founded') : res.json(Products) )
@@ -96,12 +102,14 @@ exports.postProduct = (req, res) => {
             return res.status(400).json(err);
         }else{
             let newProduct = new Product(fields);
-            if(files.photo){
-                if(files.photo.size > Math.pow(10,6)){  
-                    return res.status(400).json({error: "Image Should Be less than 1mb"});            
+            for(let i=1; i<=5; i++){
+                if(files[`photo${i}`]){
+                    if(files[`photo${i}`].size > Math.pow(10,6)){  
+                        return res.status(400).json({error: "Image Should Be less than 1mb"});            
+                    }
+                    newProduct[`photo${i}`].data = fs.readFileSync(files[`photo${i}`].path);
+                    newProduct[`photo${i}`].contentType = files[`photo${i}`].type;
                 }
-                newProduct.photo.data = fs.readFileSync(files.photo.path);
-                newProduct.photo.contentType = files.photo.type;
             }
             newProduct.save()
                         .then(x => res.json(x))
@@ -136,12 +144,14 @@ exports.updateProduct = (req, res) => {
                             x[i] = fields[i];
                             i++;
                         }
-                        if(files.photo){
-                            if(files.photo.size > Math.pow(10,6)){  
-                                return res.status(400).json({error: "Image Should Be less than 1mb"});            
+                        for(let i=1; i<=5; i++){
+                            if(files[`photo${i}`]){
+                                if(files[`photo${i}`].size > Math.pow(10,6)){  
+                                    return res.status(400).json({error: "Image Should Be less than 1mb"});            
+                                }
+                                x[`photo${i}`].data = fs.readFileSync(files[`photo${i}`].path);
+                                x[`photo${i}`].contentType = files[`photo${i}`].type;
                             }
-                            x.photo.data = fs.readFileSync(files.photo.path);
-                            x.photo.contentType = files.photo.type;
                         }
                         x.save()
                             .then(z => res.json(z))
@@ -170,3 +180,4 @@ exports.deleteProduct = (req, res) => {
            .then(() => res.json('Deleted Successfully'))
            .catch(err => res.status(400).json(err))
 }
+
