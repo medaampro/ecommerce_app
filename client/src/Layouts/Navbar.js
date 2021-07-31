@@ -8,7 +8,26 @@ import { Signout } from '../API/Auth/Signout';
 const Navbar = () => {
 
     const [show, setShow] = useState('hide');
-    const showInfos = () => show === 'hide' ?  setShow('show') : setShow('hide');
+    const [showOne, setShowOne] = useState('showOne');
+    const [showTwo, setShowTwo] = useState('showTwo');
+    const [showThree, setShowThree] = useState('showThree');
+
+    const showInfos = () => {
+
+        if(show === 'hide'){
+            setShow('show');
+            setShowOne('hideOne');
+            setShowTwo('hideTwo');
+            setShowThree('hideThree');
+        }else{
+            setShow('hide');
+            setShowOne('showOne');
+            setShowTwo('showTwo');
+            setShowThree('showThree');
+        }
+
+    }
+
 
     const countProducts = useSelector(state => state.cart.countProducts);
 
@@ -17,9 +36,9 @@ const Navbar = () => {
             <nav>
                 <div className="thinks">
                     <div onClick= { () => showInfos() }  className="burger">
-                        <div />
-                        <div />
-                        <div />
+                        <div className= { showOne } />
+                        <div className= { showTwo } />
+                        <div className= { showThree } />
                     </div>
                     <div className="logo">
                         <div><h1> <Link className="li-a" to="/">MedDev</Link> </h1></div>
