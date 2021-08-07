@@ -65,8 +65,7 @@ const Product = (props) => {
                 <div className="add-cart">
                     { AddToCartBtn() }
                 </div>
-                <div className="show-info">
-                    <p>{product.description}</p>
+                <div className="show-info" dangerouslySetInnerHTML={{__html: product.description}} >
                 </div>
 
             </div>

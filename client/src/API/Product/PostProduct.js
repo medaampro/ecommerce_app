@@ -82,7 +82,7 @@ const PostProduct = (props) => {
                     <input onChange={ e => formData.set('price', e.target.value) } min={0} type="number" placeholder="Price" required/>
                 </div>
                 <div>
-                    <input onChange={ e => formData.set('description', e.target.value) } type="text" placeholder="Description" required/>
+                    <textarea onChange={ e => formData.set('description', e.target.value) } type="text" placeholder="Description" required/>
                 </div>
                 <div>
                     <select onChange={ e => formData.set('shipping', e.target.value) } required>

@@ -200,7 +200,7 @@ form div {
     margin-top: 40px;
     text-align: center;
 }
-form div input, form div select, .orders select {
+form div input, form div textarea , form div select, .orders select {
     background-color: #f9f9f9;
     width: 80%;
     height: 35px;
@@ -231,7 +231,7 @@ form div button {
     border: none;
 }
 @media (min-width: 992px) {
-    form div input, form div select {
+    form div input , form div textarea , form div select {
         width: 100%;
     }
     form div button {
@@ -580,6 +580,7 @@ h2, h4 {
   white-space: pre-wrap;
   letter-spacing: 0.7px;
   font-family: 'Quicksand', sans-serif;
+  color: #686868;
 }
 @media (max-width: 767px) {
   .product-card {
