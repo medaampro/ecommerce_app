@@ -6,8 +6,9 @@ const fs = require('fs');
 /********************* getLogo **************************/
 exports.getLogo = (req, res) => {
 
-    App.findById("610fbc370be24331e82aee22")
-       .then(x => {       
+    App.find()
+       .then(z => {       
+            let x = z[0];
             res.set('Content-Type', x.logo.contentType);
             return res.send(x.logo.data);
        })
