@@ -19,8 +19,10 @@ exports.getLogo = (req, res) => {
 /********************* updateLogo **************************/
 exports.updateLogo = (req, res) => {
 
-    App.findById("610fbc370be24331e82aee22")
-       .then(x => {
+    App.find()
+       .then(z => {
+
+            let x = z[0];
 
             const form = new IncomingForm();
             form.keepExtensions = true;
