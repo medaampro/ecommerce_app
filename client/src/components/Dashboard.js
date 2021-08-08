@@ -21,6 +21,7 @@ const Dashboard = () => {
                         <p><Link to={`/category/add/${user._id}`} className="li-a" >Create Cateory</Link></p>
                         <p><Link to={`/product/add/${user._id}`} className="li-a" >Create Product</Link></p>
                         <p><Link to={`/order/${user._id}`} className="li-a" >View Orders</Link></p>
+                        <p><Link to={`/app/updateLogo/${user._id}`} className="li-a" >Update Logo</Link></p>
                     </>
                 }
             </div>

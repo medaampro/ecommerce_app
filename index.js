@@ -22,12 +22,14 @@ const categoryRoute = require('./routes/categoryRoute');
 const productRoute = require('./routes/productRoute');
 const paymentRoute = require('./routes/paymentRoute');
 const orderRoute = require('./routes/orderRoute');
+const appRoute = require('./routes/appRoute');
 app.use('/', authRoute);
 app.use('/profile', userRoute);
 app.use('/category', categoryRoute);
 app.use('/product', productRoute);
 app.use('/payment', paymentRoute);
 app.use('/order', orderRoute);
+app.use('/app', appRoute);
 
 /********************* DataBase **************************/
 const mongoose = require('mongoose'); 

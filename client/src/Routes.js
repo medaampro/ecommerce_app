@@ -12,7 +12,7 @@ import Dashboard from '../src/components/Dashboard';
 import PostProduct from '../src/API/Product/PostProduct';
 import PostCategory from '../src/API/Category/PostCategory';
 import GetOrders from './API/Order/GetOrders';
-
+import UpdateLogo from './API/App/UpdateLogo';
 
 const Routes = () => (
 
@@ -31,6 +31,7 @@ const Routes = () => (
                         <AdminRoute path="/product/add/:userId" component={ PostProduct }/>
                         <AdminRoute path="/category/add/:userId" component={ PostCategory }/>
                         <AdminRoute path="/order/:userId" component={ GetOrders }/>
+                        <AdminRoute path="/app/updateLogo/:userId" component={ UpdateLogo }/>
                   </Switch>
                   <Footer />
 

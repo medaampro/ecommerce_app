@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { isAuthenticated } from '../Helpers/isAuthenticated';
+import  ShowImage  from '../Helpers/ShowImage';
 import { Signout } from '../API/Auth/Signout';
 
  
@@ -40,8 +41,12 @@ const Navbar = () => {
                         <div className= { showTwo } />
                         <div className= { showThree } />
                     </div>
-                    <div className="logo">
-                        <div><h1> <Link className="li-a" to="/">MedDev</Link> </h1></div>
+                    <div className="logoNav">
+
+                        <Link to="/"> 
+                            <ShowImage className="logoImage" url= {`app/getLogo`} />
+                        </Link>
+
                     </div>
                     <div className="cartt">
                         <Link className="li-a"  to="/cart"><span className="icon-shopping-cart" productsnumber={countProducts} /></Link>

@@ -59,7 +59,10 @@ li {
   width: 35px;
   height: 3px;
 }
-
+.logoImage {
+  width: 150px;
+  height: 10vh;
+}
 /**************************** Navbar ****************************/
 .thinks {
     background-color: white;
@@ -99,13 +102,8 @@ li {
   width: 25px;
   height: 3px;
 }
-.logo {
+.logoNav {
     text-align: center;
-    font-size: 30px;
-}
-.logo div h1 a {
-    color: #FEC3A6;
-    font-family: 'Dancing Script';
 }
 .cartt {
     text-align: center;
@@ -163,9 +161,8 @@ footer .brandInfos {
 footer .brandInfos , footer .lists {
     padding-top: 5vh;
 }  
-footer .brandInfos h1 {
-    font-size: 40px;
-    font-family: 'Dancing Script';
+footer .brandInfos a {
+  font-size: 40px;
 }
 footer .brandInfos p {
     margin-top: -20px;

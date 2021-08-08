@@ -4,7 +4,6 @@ import ShowImage from '../Helpers/ShowImage';
 import { getProduct } from '../API/Product/getProduct';
 import { useDispatch } from 'react-redux';
 import { AddToCart, Incremment, Decremment } from '../Actions/actions';
-import { x } from 'joi';
 
 const Product = (props) => {
 

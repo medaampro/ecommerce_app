@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import  ShowImage  from '../Helpers/ShowImage';
 
 const Footer = () => {
 
@@ -6,7 +7,9 @@ const Footer = () => {
         <>
             <footer>
                 <div className="brandInfos">
-                    <h1><Link className="li-a" to="/">MedDev</Link></h1>
+                        <Link to="/"> 
+                            <ShowImage className="logoImage" url= {`app/getLogo`} />
+                        </Link>
                     <p className="li-a">meddev@gmail.com</p>
                     <p className="li-a">0650335570</p>
                 </div>
