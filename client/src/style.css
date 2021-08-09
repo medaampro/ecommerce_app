@@ -17,6 +17,11 @@ h1, h2, h3, h4 {
   font-family: 'Source Sans Pro', sans-serif;
   color: #686868;
 }
+hr{
+  width: 80%;
+  border-style: dashed;
+  border-bottom: none;
+}
 li {
   list-style: none;
 }
@@ -574,11 +579,24 @@ h2, h4 {
 .show-info {
   width: 90%;
   margin: 0 auto;
+  margin-bottom: 20vh;
   white-space: pre-wrap;
   letter-spacing: 0.7px;
   font-family: 'Quicksand', sans-serif;
   color: #686868;
 }
+.related-products {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 10vh;
+}
+.related-products h2 {
+  margin: 0;
+  text-align: center;
+}
+
+
+
 @media (max-width: 767px) {
   .product-card {
     width: 100%;
@@ -802,11 +820,6 @@ h2, h4 {
 .dashboard .pers-infos {
   grid-area: Infos;
   background-color: #f9f9f9;
-}
-.dashboard hr {
-  width: 80%;
-  border-style: dashed;
-  border-bottom: none;
 }
 .dashboard h3 {
   letter-spacing: 0.7px;

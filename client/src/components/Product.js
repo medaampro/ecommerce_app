@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ShowImage from '../Helpers/ShowImage';
+import Card from '../Helpers/Card';
 import { getProduct } from '../API/Product/getProduct';
+import { relatedProducts } from '../API/Product/relatedProducts';
 import { useDispatch } from 'react-redux';
 import { AddToCart, Incremment, Decremment } from '../Actions/actions';
 
@@ -10,6 +12,7 @@ const Product = (props) => {
     const dispatch = useDispatch();
 
     const [product, setProduct] = useState({});
+    const [related, setRelated] = useState([]);
     const [photoNum, setPhotoNum] = useState(1);
     const [counter, setCounter] = useState(1);
 
@@ -17,6 +20,9 @@ const Product = (props) => {
     useEffect(() => {
         getProduct(props.match.params.productId)
             .then( res => setProduct(res) )
+            .catch(err => console.error(err))
+        relatedProducts(props.match.params.productId, {limit: 3})
+            .then( res => setRelated(res) )
             .catch(err => console.error(err))
     }, [])
 
@@ -65,6 +71,16 @@ const Product = (props) => {
                     { AddToCartBtn() }
                 </div>
                 <div className="show-info" dangerouslySetInnerHTML={{__html: product.description}} >
+                </div>
+
+
+            </div>
+
+            <div className="related-products">
+
+                <hr /><h2>Related Products</h2><hr />
+                <div className="Products">
+                    { related.map( (pro, i) => <Card key={i} id={ pro._id } name={ pro.name } /> ) }
                 </div>
 
             </div>
