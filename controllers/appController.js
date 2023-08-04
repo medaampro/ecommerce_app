@@ -1,54 +1,42 @@
-const App = require('../models/App');
-const { IncomingForm } = require('formidable');
-const fs = require('fs');
+const App = require("../models/App");
+const {IncomingForm} = require("formidable");
+const fs = require("fs");
 
+exports.readLogo = (req, res) => {
+    App.findOne()
+       .then(_logo => {
+            if(!_logo) return res.json({});
 
-/********************* getLogo **************************/
-exports.getLogo = (req, res) => {
-
-    App.find()
-       .then(z => {       
-            let x = z[0];
-            res.set('Content-Type', x.logo.contentType);
-            return res.send(x.logo.data);
+            res.set("Content-Type", _logo.logo.contentType);
+            return res.send(_logo.logo.data);
        })
        .catch(err => res.status(404).json(err))
-  
 }
 
+exports.writeLogo = async (req, res) => {
+    await App.deleteMany();
 
-/********************* updateLogo **************************/
-exports.updateLogo = (req, res) => {
+    const form = new IncomingForm();
+    form.keepExtensions = true;
 
-    App.find()
-       .then(z => {
+    form.parse(req, (err, fields, files) => {
+        if(err)
+            return res.status(400).json(err);
 
-            let x = z[0];
+        let newApp = new App(fields);
 
-            const form = new IncomingForm();
-            form.keepExtensions = true;
+        if(files["logo"])
+        {
+            if(files["logo"].size > Math.pow(10,6))
+                return res.status(400).json({errors: "Image Should Be less than 1 Mbs"});
 
-            form.parse(req, (err, fields, files) => {
-                if(err){
-                    return res.status(400).json({errors: err});
-                }else{
+            newApp["logo"].data = fs.readFileSync(files["logo"].path);
+            newApp["logo"].contentType = files["logo"].type;
+        }
 
-                    if(files[`logo`]){
-                        if(files[`logo`].size > Math.pow(10,6)){  
-                            return res.status(400).json({errors: "Image Should Be less than 1mb"});            
-                        }
-                        x[`logo`].data = fs.readFileSync(files[`logo`].path);
-                        x[`logo`].contentType = files[`logo`].type;
-                    }
-
-                        x.save()
-                            .then(z => res.json(z))
-                            .catch(error => res.json({errors: error}))
-                }
-            });
-
-
-       })
-       .catch(err => res.status(404).json(err))
-  
+        newApp.save()
+            .then(rapp => res.json(rapp))
+            .catch(err => res.status(404).json(err))
+      });    
 }
+

@@ -1,12 +1,10 @@
-const Category = require('../models/Category');
+const Category = require("../models/Category");
 
-/********************* sendCategoryInRequest **************************/
 exports.categoryById = (req, res, next, id) => {
     Category.findById(id)
             .then(category => {
                 req.body.category = category;
                 next();
-            } )
-            .catch(() => res.status(404).json('Category Not founded'))
-    
+            })
+            .catch(() => res.status(404).json("Category Not founded"))
 }

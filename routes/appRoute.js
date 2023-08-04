@@ -1,14 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const { updateLogo, getLogo } = require('../controllers/appController');
-const { userById } = require('../middlewares/userMiddleware');
-const { requireSignIn, isAuth, isAdmin } = require('../middlewares/authMiddleware');
+const {readLogo, writeLogo} = require("../controllers/appController");
+const {userById} = require("../middlewares/userMiddleware");
+const {requireSignIn, isAuth, isAdmin } = require("../middlewares/authMiddleware");
 
+router.get("/readLogo", readLogo);
+router.post("/writeLogo/:userid", [requireSignIn, isAuth, isAdmin], writeLogo);
 
-router.get('/getLogo', getLogo);
-router.put('/updateLogo/:userid', [requireSignIn, isAuth, isAdmin] , updateLogo);
-
-router.param('userid', userById);
+router.param("userid", userById);
 
 module.exports = router;

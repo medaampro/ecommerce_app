@@ -1,32 +1,29 @@
-const Product = require('../models/Product');
+const Product = require("../models/Product");
 
-/********************* sendProductInRequest **************************/
-exports.productById = (req, res, next, id) => {
+exports.productById = async (req, res, next, id) => {
     Product.findById(id)
            .populate("category")
            .exec((err, product) => {
-                if(err || !product){
-                    return res.status(404).json('Product Not Founded !!')
-                }else {
-                    req.body.product = product;
-                    next();
-                }
+                if(err || !product)
+                    return res.status(404).json("Product Not Founded !!");
+
+                req.body.product = product;
+                next();
             })
 }
 
-/********************* stockManagement **************************/
 exports.stockManagement = (req, res, next) => {
-    const { products } = req.body;
+    const {products} = req.body;
     
-    products.forEach(x => {
-        Product.findById(x.product)
-               .then(z => {
-                    z.sold = z.sold + x.count;
-                    z.quantity = z.quantity - x.count;
-                    z.save();
+    products.forEach(pro => {
+        Product.findById(pro.product)
+               .then(pr => {
+                    pr.sold += pro.count;
+                    pr.quantity -= pro.count;
+                    pr.save();
                })
+               .then(() => next())
                .catch(err => res.status(400).json(err))
     });
 
-    next();
 }

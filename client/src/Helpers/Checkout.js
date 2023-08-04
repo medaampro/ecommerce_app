@@ -80,6 +80,7 @@ const Checkout = ({amount, ProdutsInCart}) => {
                 })
             })
     }
+/*  }} */
 
     if(!data.paymentToken) {
         return (
@@ -96,7 +97,7 @@ const Checkout = ({amount, ProdutsInCart}) => {
                         </div>
                 </form>
                 <div className="DropIn" >
-                    <DropIn options={{ authorization: data.paymentToken, paypal: { flow: "vault" } }} onInstance={(instance) => ( data.instance = instance)} />
+                    <DropIn options={{ authorization: data.paymentToken, paypal: { flow: "vault" } }}  onInstance={(instance) => (data.instance = instance)} />
                     <button className="btn" onClick={ () => buy() } >Checkout</button>
                 </div>
             </>

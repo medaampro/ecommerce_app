@@ -44,7 +44,7 @@ const Navbar = () => {
                     <div className="logoNav">
 
                         <Link to="/"> 
-                            <ShowImage className="logoImage" url= {`app/getLogo`} />
+                            <ShowImage className="logoImage" url= {`app/readLogo`} />
                         </Link>
 
                     </div>

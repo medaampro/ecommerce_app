@@ -1,28 +1,28 @@
-const User = require('../models/User');
+const User = require("../models/User");
 
-/********************* sendUserInRequest **************************/
 exports.userById = (req, res, next, id) => {
     User.findById(id, (err, profile) => {
-        if(err || !profile){
-            res.status(404).json('User Not Founded');
-        }else{
-            req.body.profile = profile;
-            next();
-        }
+        if(err || !profile)
+            return res.status(404).json("User Not Founded");
+
+        req.body.profile = profile;
+        next();
     })
 }
 
-/********************* AddPurchaseToUserHistory **************************/
 exports.AddPurchaseToUserHistory = (req, res, next) => {
-    const { profile, products } = req.body;
+    const {profile, products} = req.body;
+    const transaction_id = req.body.transaction_id;
+
     let amount = 0;
     let items = [];
-    transaction_id = req.body.transaction_id;
-    products.forEach(x => {
-        amount += x.price * x.count;
-        items.unshift(x.name);
+
+    products.forEach(product => {
+        amount += product.price * product.count;
+        items.push(product.name);
     });
-    profile.history.unshift( {transaction_id: transaction_id, Total: amount, Products: items} ); 
+
+    profile.history.push({transaction_id: transaction_id, total: amount, products: items});
 
     profile.save()
            .then(() => next())
