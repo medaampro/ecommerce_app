@@ -25,6 +25,8 @@ exports.AddPurchaseToUserHistory = (req, res, next) => {
     profile.history.push({transaction_id: transaction_id, total: amount, products: items});
 
     profile.save()
-           .then(() => next())
+           .then(() => {})
            .catch(err => res.status(400).json(err))
+
+    next();
 }

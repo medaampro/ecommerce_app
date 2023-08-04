@@ -1,6 +1,6 @@
 const Product = require("../models/Product");
 
-exports.productById = async (req, res, next, id) => {
+exports.productById = (req, res, next, id) => {
     Product.findById(id)
            .populate("category")
            .exec((err, product) => {
@@ -22,8 +22,9 @@ exports.stockManagement = (req, res, next) => {
                     pr.quantity -= pro.count;
                     pr.save();
                })
-               .then(() => next())
+               .then(() => {})
                .catch(err => res.status(400).json(err))
     });
 
+    next();
 }
