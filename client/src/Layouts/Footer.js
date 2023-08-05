@@ -10,8 +10,8 @@ const Footer = () => {
                         <Link to="/"> 
                             <ShowImage className="logoImage" url= {`app/readLogo`}/>
                         </Link>
-                    <p className="li-a">meddev@gmail.com</p>
-                    <p className="li-a">0650335570</p>
+                    <p className="li-a">medaam.pro@gmail.com</p>
+                    <p className="li-a">+212650335570</p>
                 </div>
                 <div className="lists">
                     <ul>
